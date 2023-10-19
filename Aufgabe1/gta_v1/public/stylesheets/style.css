@@ -28,6 +28,8 @@ html {
   --background-color: #efefef;
   --border-color: #cdcdcd;
   --gray-color: #666;
+  --border: 0.1rem solid var(--border-color);
+  --flex-gap: 2rem;
 }
 
 
@@ -51,87 +53,214 @@ a {
 
 /* Grid styles (no changes required) */
 
+/* 
+Instead of setting a fixed width on the children of .row, 
+I set their flex attribute to certain amount. As with how 
+flexboxes work, combining col-3 and col-9, the take up
+3/12 and 9/12 of the remaining space. Instead of calculating 
+the width with a given spacing, I use gap to space them evenly.
+*/
+
 .row {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  flex: 1;
+  gap: var(--flex-gap);
 }
 
 .col-1 {
-  width: calc(8.33% - 1rem);
+  flex: 1;
+  /*width: calc(8.33% - 1rem);*/
 }
 
 .col-2 {
-  width: calc(16.66% - 1rem);
+  flex: 2;
+  /*width: calc(16.66% - 1rem);*/
 }
 
 .col-3 {
-  width: calc(25% - 1rem);
+  flex: 3;
+  /*width: calc(25% - 1rem);*/
 }
 
 .col-4 {
-  width: calc(33.33% - 1rem);
+  flex: 4;
+  /*width: calc(33.33% - 1rem);*/
 }
 
 .col-5 {
-  width: calc(41.66% - 1rem);
+  flex: 5;
+  /*width: calc(41.66% - 1rem);*/
 }
 
 .col-6 {
-  width: calc(50% - 1rem);
+  flex: 6;
+  /*width: calc(50% - 1rem);*/
 }
 
 .col-7 {
-  width: calc(58.33% - 1rem);
+  flex: 7;
+  /*width: calc(58.33% - 1rem);*/
 }
 
 .col-8 {
-  width: calc(66.66% - 1rem);
+  flex: 8;
+  /*width: calc(66.66% - 1rem);*/
 }
 
 .col-9 {
-  width: calc(75% - 1rem);
+  flex: 9;
+  /*width: calc(75% - 1rem);*/
 }
 
 .col-10 {
-  width: calc(83.33% - 1rem);
+  flex: 10
+  /*width: calc(83.33% - 1rem);*/
 }
 
 .col-11 {
-  width: calc(91.66% - 1rem);
+  flex: 11;
+  /*width: calc(91.66% - 1rem);*/
 }
 
 .col-12 {
-  width: calc(100% - 1rem);
+  flex: 12;
+  /*width: calc(100% - 1rem);*/
 }
 
 
 /* ### TODO ### Styles for Header Component */
 
-/* ... your code here ... */
+.header {
+  padding: 3rem;
+  background: var(--background-color);
+
+  border-bottom: var(--border);
+}
+
+.header.row {
+  align-items: center;
+}
+
+.header__image {
+  width: 3rem;
+  height: 3rem;
+}
 
 
 /* ### TODO ### Styles for Main Component */
 
-/* ... your code here ... */
+.main {
+  padding: 3rem;
+  gap: var(--flex-gap);
+}
 
+/* vvv Styles for all forms below vvv */
+
+form {
+  margin-top: 0.5rem;
+}
+
+fieldset {
+  padding: 0.5rem;
+  border: var(--border);
+}
+
+legend {
+  font-weight: bolder;
+}
+
+label {
+  display: block;
+  margin: 0.75rem 0.2rem 0.2rem 0.2rem;
+}
+
+label[data-hidden] {
+  display: none;
+}
+
+input {
+  display: block;
+  margin: 0.2rem;
+  padding: 0.5rem;
+  min-width: 12rem;
+
+  border: var(--border);
+}
+
+input[type="submit"] {
+  margin-top: 0.75rem;
+}
+
+input:read-only {
+  background-color: var(--background-color);
+}
 
 /* ### TODO ### Styles for Tagging component */
 
-/* ... your code here ... */
-
+/* Tagging styling is already handled by the form section above */
 
 /* ### TODO ### Styles for Discovery component */
 
-/* ... your code here ... */
+.discovery__wrapper {
+  margin-top: var(--flex-gap);
+}
+
+.discovery__wrapper.row {
+  align-items: stretch;
+  justify-content: start;
+}
+
+.discovery__results li {
+  list-style-type: none;
+  margin-bottom: calc(var(--flex-gap) / 2);
+  padding: 0.75rem;
+  color: var(--link-color);
+  background: var(--background-color);
+  border: var(--border);
+}
+
+.discovery__map img {
+  width: 100%;
+  object-fit: cover;
+}
 
 
 /* ### TODO ### Styles for Footer Component */
 
-/* ... your code here ... */
+.footer {
+  margin-top: auto;
+  padding: 2rem;
+  min-height: 6rem;
+  background: var(--background-color);
+  border: var(--border);
+}
 
+.footer.row {
+  justify-content: start;
+  align-items: center;
+}
 
 /* ### TODO ### Media Queries */
 
-/* ... your code here ... */
+@media only screen and (max-width: 768px) {
+  /*
+  [class="row-"] {
+    width: 100%;
+  }
+  */
+
+  .row {
+    flex-direction: column;
+  }
+
+  .header {
+    gap: calc(var(--flex-gap) / 2);
+    padding: 0.9rem;
+  }
+
+  .header__image {
+    width: 2rem;
+    height: 2rem;
+  }
+}

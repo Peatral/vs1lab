@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <header class="header">
+    <header class="header row">
         <img src="./images/location.png" class="header__image" alt="an image of a map and location">
         <h1 class="header__title">GeoTagApp</h1>
         <nav class="header__navigation">
@@ -21,8 +21,8 @@
         </nav>
     </header>
 
-    <main class="main">
-        <section class="main__tagging tagging">
+    <main class="main row">
+        <section class="main__tagging tagging col-3">
             <h2>Tagging</h2>
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
@@ -31,9 +31,9 @@
                 <fieldset id="geotag">
                     <legend>Add a new GeoTag</legend>
                     <label for="latitude">Latitude:</label>
-                    <input type="number" name="Latitude" id="latitude" placeholder="49.01379" required readonly/>
+                    <input type="text" name="Latitude" id="latitude" placeholder="49.01379" required readonly/>
                     <label for="longitude">Longitude:</label>
-                    <input type="number" name="Longitude" id="longitude" placeholder="8.390071" required readonly/>
+                    <input type="text" name="Longitude" id="longitude" placeholder="8.390071" required readonly/>
                     <label for="name">Name:</label>
                     <input type="text" name="Name" id="name" placeholder="e.g. Central Berlin" maxlength="10" required/>
                     <label for="hashtag">Hashtag:</label>
@@ -46,7 +46,7 @@
 
         </section>
 
-        <section class="main__discovery discovery">
+        <section class="main__discovery discovery col-9">
             <h2 class="discovery__title">Discovery</h2>
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
@@ -56,9 +56,9 @@
                     <legend>Search</legend>
                     <label for="searchterm">Search term or keywords:</label>
                     <input type="text" name="Searchterm" id="searchterm" placeholder="e.g. Berlin" required/>
-                    <label for="discovery_latitude" hidden>Latitude:</label>
+                    <label for="discovery_latitude" data-hidden>Latitude:</label>
                     <input type="hidden" name="Latitude" id="discovery_latitude"/>
-                    <label for="discovery_longitude" hidden>Longitude:</label>
+                    <label for="discovery_longitude" data-hidden>Longitude:</label>
                     <input type="hidden" name="Longitude" id="discovery_longitude"/>
                     <input type="submit" value="Search"/>
                 </fieldset>
@@ -66,15 +66,15 @@
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
 
-            <div class="discovery__wrapper">
-                <div class="discovery__taglist">
+            <div class="discovery__wrapper row">
+                <div class="discovery__taglist col-5">
                     <ul class="discovery__results" id="discoveryResults">
                         <li>Castle (49.01379, 8.404435) #sight</li>
                         <li>IWI (49.01379, 8.390071) #edu</li>
                     </ul>
                 </div>
 
-                <div class="discovery__map">
+                <div class="discovery__map col-7">
                     <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
                     <span>Result map</span>
                 </div>
@@ -83,7 +83,7 @@
 
     </main>
 
-    <footer class="footer">
+    <footer class="footer row">
         <span>(c) 2021/22 HKA_IWI_VSYS</span>
     </footer>
 </body>
