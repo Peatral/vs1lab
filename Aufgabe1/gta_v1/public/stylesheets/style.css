@@ -233,7 +233,7 @@ input:read-only {
   padding: 2rem;
   min-height: 6rem;
   background: var(--background-color);
-  border: var(--border);
+  border-top: var(--border);
 }
 
 .footer.row {
