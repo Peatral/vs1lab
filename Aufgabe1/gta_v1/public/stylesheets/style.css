@@ -196,6 +196,16 @@ input:read-only {
   background-color: var(--background-color);
 }
 
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 /* ### TODO ### Styles for Tagging component */
 
 /* Tagging styling is already handled by the form section above */
