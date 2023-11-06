@@ -112,11 +112,11 @@ function updateLocation() {
                 document.getElementById("longitude"),
                 document.getElementById("discovery_longitude"),
             ].forEach(long => long.value = helper.longitude);
+            
+            let mapManager = new MapManager("pqYXJV4b1tGwd9ZsRr84RJ6wl93FSRYs");
+            let map = document.getElementById("mapView");
+            map.src = mapManager.getMapUrl(helper.latitude, helper.longitude);
         });
-
-        let mapManager = new MapManager("pqYXJV4b1tGwd9ZsRr84RJ6wl93FSRYs");
-        let map = document.getElementById("mapView");
-        map.src = mapManager.getMapUrl(helper.latitude, helper.longitude);
     } catch(e) {
         console.error(e);
     }
