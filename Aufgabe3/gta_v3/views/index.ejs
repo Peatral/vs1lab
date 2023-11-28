@@ -1,5 +1,96 @@
-<!-- TODO: HTML AUS AUFGABE2 HIERHER KOPIEREN UND DIE BEISPIEL-EINTRÄGE DER DISCOVERY-LISTE MIT DEN FOLGENDEN ZEILEN ERSETZEN -->
+<!DOCTYPE html>
 
-<% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
-    <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
-<% }); %>
+<!-- File origin: VS1LAB A1a -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoTagApp</title>
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header class="header row">
+        <img src="./images/location.png" class="header__image" alt="an image of a map and location">
+        <h1 class="header__title">GeoTagApp</h1>
+        <nav class="header__navigation">
+            <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <main class="main row">
+        <section class="main__tagging tagging col-3">
+            <h2>Tagging</h2>
+
+            <!-- ############### VS1Lab 1a Form 1 Start -->
+            <form id="tag-form" action="/tagging" method="post">
+
+                <fieldset id="geotag">
+                    <legend>Add a new GeoTag</legend>
+                    <label for="latitude">Latitude:</label>
+                    <input type="number" name="Latitude" id="latitude" placeholder="49.01379" value="<%= lat %>" required readonly/>
+                    <label for="longitude">Longitude:</label>
+                    <input type="number" name="Longitude" id="longitude" placeholder="8.390071" value="<%= long %>" required readonly/>
+                    <label for="name">Name:</label>
+                    <input type="text" name="Name" id="name" placeholder="e.g. Central Berlin" maxlength="10" required/>
+                    <label for="hashtag">Hashtag:</label>
+                    <input type="text" name="Hashtag" id="hashtag" placeholder="e.g. #ber" pattern="^#[a-zA-Z0-9]{1,10}"/>
+                    <input type="submit" value="Add Tag"/>
+                </fieldset>
+
+            </form>
+            <!-- ############### VS1Lab 1a Form 1 End -->
+
+        </section>
+
+        <section class="main__discovery discovery col-9">
+            <h2 class="discovery__title">Discovery</h2>
+
+            <!-- ############### VS1Lab 1a Form 2 Start -->
+            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
+
+                <fieldset>
+                    <legend>Search</legend>
+                    <label for="searchterm">Search term or keywords:</label>
+                    <input type="text" name="Searchterm" id="searchterm" placeholder="e.g. Berlin" required/>
+                    <label for="discovery_latitude" data-hidden>Latitude:</label>
+                    <input type="hidden" name="Latitude" id="discovery_latitude" value="<%= lat %>"/>
+                    <label for="discovery_longitude" data-hidden>Longitude:</label>
+                    <input type="hidden" name="Longitude" id="discovery_longitude" value="<%= long %>"/>
+                    <input type="submit" value="Search"/>
+                </fieldset>
+
+            </form>
+            <!-- ############### VS1Lab 1a Form 2 End -->
+
+            <div class="discovery__wrapper row">
+                <div class="discovery__taglist col-5">
+                    <ul class="discovery__results" id="discoveryResults">
+                        <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
+                            <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
+                        <% }); %>
+                    </ul>
+                </div>
+
+                <div class="discovery__map col-7">
+                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" data-tags='<%= JSON.stringify(taglist) %>'/>
+                    <span>Result map</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer row">
+        <span>(c) 2021/22 HKA_IWI_VSYS</span>
+    </footer>
+
+    <script src="./javascripts/location-helper.js"></script>
+    <script src="./javascripts/map-manager.js"></script>
+    <script src="./javascripts/geotagging.js"></script>
+</body>
+
+</html>

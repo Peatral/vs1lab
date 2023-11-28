@@ -1,0 +1,276 @@
+/*
+  File origin: VS1LAB A1b  
+
+  CSS style is BEM. Classes used for CSS, IDs for JavaScript querying (future use).
+  CSS variables used for clarity and themability (e.g. through SSR). 
+  Inherited box sizing used for ease of including 3rd party content-box components.
+*/
+
+/* Global styling */
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  /* This approach prevents issues with 3rd party content-box components */
+  box-sizing: inherit;
+}
+
+
+/* Variables (example: see declaration for "a" below) */
+
+:root {
+  --link-color: #00B7FF;
+  --background-color: #efefef;
+  --border-color: #cdcdcd;
+  --gray-color: #666;
+  --border: 0.1rem solid var(--border-color);
+  --flex-gap: 2rem;
+}
+
+
+/* HTML element styles */
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--link-color);
+}
+
+/* ### TODO ### Styles for other HTML elements */
+
+/* ... your code here ... */
+
+
+/* Grid styles (no changes required) */
+
+/* 
+Instead of setting a fixed width on the children of .row, 
+I set their flex attribute to certain amount. As with how 
+flexboxes work, combining col-3 and col-9, the take up
+3/12 and 9/12 of the remaining space. Instead of calculating 
+the width with a given spacing, I use gap to space them evenly.
+*/
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--flex-gap);
+}
+
+.col-1 {
+  flex: 1;
+  /*width: calc(8.33% - 1rem);*/
+}
+
+.col-2 {
+  flex: 2;
+  /*width: calc(16.66% - 1rem);*/
+}
+
+.col-3 {
+  flex: 3;
+  /*width: calc(25% - 1rem);*/
+}
+
+.col-4 {
+  flex: 4;
+  /*width: calc(33.33% - 1rem);*/
+}
+
+.col-5 {
+  flex: 5;
+  /*width: calc(41.66% - 1rem);*/
+}
+
+.col-6 {
+  flex: 6;
+  /*width: calc(50% - 1rem);*/
+}
+
+.col-7 {
+  flex: 7;
+  /*width: calc(58.33% - 1rem);*/
+}
+
+.col-8 {
+  flex: 8;
+  /*width: calc(66.66% - 1rem);*/
+}
+
+.col-9 {
+  flex: 9;
+  /*width: calc(75% - 1rem);*/
+}
+
+.col-10 {
+  flex: 10
+  /*width: calc(83.33% - 1rem);*/
+}
+
+.col-11 {
+  flex: 11;
+  /*width: calc(91.66% - 1rem);*/
+}
+
+.col-12 {
+  flex: 12;
+  /*width: calc(100% - 1rem);*/
+}
+
+
+/* ### TODO ### Styles for Header Component */
+
+.header {
+  padding: 3rem;
+  background: var(--background-color);
+
+  border-bottom: var(--border);
+}
+
+.header.row {
+  align-items: center;
+}
+
+.header__image {
+  width: 3rem;
+  height: 3rem;
+}
+
+
+/* ### TODO ### Styles for Main Component */
+
+.main {
+  padding: 3rem;
+  gap: var(--flex-gap);
+}
+
+/* vvv Styles for all forms below vvv */
+
+form {
+  margin-top: 0.5rem;
+}
+
+fieldset {
+  padding: 0.5rem;
+  border: var(--border);
+}
+
+legend {
+  font-weight: bolder;
+}
+
+label {
+  display: block;
+  margin: 0.75rem 0.2rem 0.2rem 0.2rem;
+}
+
+label[data-hidden] {
+  display: none;
+}
+
+input {
+  display: block;
+  margin: 0.2rem;
+  padding: 0.5rem;
+  min-width: 12rem;
+
+  border: var(--border);
+}
+
+input[type="submit"] {
+  margin-top: 0.75rem;
+}
+
+input:read-only {
+  background-color: var(--background-color);
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* ### TODO ### Styles for Tagging component */
+
+/* Tagging styling is already handled by the form section above */
+
+/* ### TODO ### Styles for Discovery component */
+
+.discovery__wrapper {
+  margin-top: var(--flex-gap);
+}
+
+.discovery__wrapper.row {
+  align-items: stretch;
+  justify-content: start;
+}
+
+.discovery__results li {
+  list-style-type: none;
+  margin-bottom: calc(var(--flex-gap) / 2);
+  padding: 0.75rem;
+  color: var(--link-color);
+  background: var(--background-color);
+  border: var(--border);
+}
+
+.discovery__map img {
+  width: 100%;
+  object-fit: cover;
+}
+
+
+/* ### TODO ### Styles for Footer Component */
+
+.footer {
+  margin-top: auto;
+  padding: 2rem;
+  min-height: 6rem;
+  background: var(--background-color);
+  border-top: var(--border);
+}
+
+.footer.row {
+  justify-content: start;
+  align-items: center;
+}
+
+/* ### TODO ### Media Queries */
+
+@media only screen and (max-width: 768px) {
+  /*
+  [class="row-"] {
+    width: 100%;
+  }
+  */
+
+  .row {
+    flex-direction: column;
+  }
+
+  .header {
+    gap: calc(var(--flex-gap) / 2);
+    padding: 0.9rem;
+  }
+
+  .header__image {
+    width: 2rem;
+    height: 2rem;
+  }
+}
