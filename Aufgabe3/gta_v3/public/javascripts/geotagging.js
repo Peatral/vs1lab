@@ -23,7 +23,7 @@ function updateLocation() {
         document.getElementById("discovery_longitude"),
     ];
     const map = document.getElementById("mapView");
-    const taglist = JSON.parse(map.dataset.tags).filter(tag => tag != {});
+    const taglist = JSON.parse(map.dataset.tags);
 
     const locationCallback = helper => {
         latitudes.forEach(lat => lat.value = helper.latitude);

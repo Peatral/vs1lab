@@ -102,7 +102,7 @@ router.post('/discovery', (req, res) => {
     lat: req.body.Latitude,
     long: req.body.Longitude,
     taglist: store.searchNearbyGeoTags(
-      req.body.Searchterm ?? '', 
+      req.body.Searchterm, 
       req.body.Latitude, 
       req.body.Longitude, 
       SEARCH_RADIUS) 

@@ -46,7 +46,8 @@ class InMemoryGeoTagStore{
     searchNearbyGeoTags(searchterm, latitude, longitude, radius) {
         return this
             .getNearbyGeoTags(latitude, longitude, radius)
-            .filter(tag => tag.name.includes(searchterm) || tag.hashtag.includes(searchterm));
+            .filter(tag => tag.name.toLowerCase().includes(searchterm.toLowerCase()) 
+              	|| tag.hashtag.toLowerCase().includes(searchterm.toLowerCase()));
     }
 
 }
