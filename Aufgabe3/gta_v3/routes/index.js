@@ -28,7 +28,7 @@ const GeoTagStore = require('../models/geotag-store');
 const GeoTagExamples = require('../models/geotag-examples');
 const store = new GeoTagStore();
 GeoTagExamples.tagList
-  .forEach(entry => store.addGeoTag(new GeoTag(entry[1], entry[2], entry[0], entry[3])));
+  .forEach(([name, latitude, longitude, hashtag]) => store.addGeoTag(new GeoTag(latitude, longitude, name, hashtag)));
 const SEARCH_RADIUS = 100;
 
 /**
