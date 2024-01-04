@@ -1,0 +1,52 @@
+GET http://localhost:3000/api/geotags/ HTTP/1.1
+content-type: application/json
+
+###
+POST http://localhost:3000/api/geotags/ HTTP/1.1
+content-type: application/json
+
+{
+  "latitude": "49.01379",
+  "longitude": "8.39007",
+  "name": "Test",
+  "hashtag": "#hashtag"
+}
+
+###
+GET http://localhost:3000/api/geotags/13 HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:3000/api/geotags?searchterm=test HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:3000/api/geotags?latitude=49.01379&longitude=8.39007 HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:3000/api/geotags/?searchterm=test&latitude=49.01379&longitude=8.39007 HTTP/1.1
+content-type: application/json
+
+###
+PUT http://localhost:3000/api/geotags/13 HTTP/1.1
+content-type: application/json
+
+{
+  "latitude": "49.01379",
+  "longitude": "8.39007",
+  "name": "No Test",
+  "hashtag": "#nohashtag"
+}
+
+###
+GET http://localhost:3000/api/geotags/13 HTTP/1.1
+content-type: application/json
+
+###
+DELETE http://localhost:3000/api/geotags/13 HTTP/1.1
+content-type: application/json
+
+###
+GET http://localhost:3000/api/geotags/13 HTTP/1.1
+content-type: application/json
