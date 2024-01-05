@@ -31,9 +31,9 @@
                 <fieldset id="geotag">
                     <legend>Add a new GeoTag</legend>
                     <label for="latitude">Latitude:</label>
-                    <input type="number" name="latitude" id="latitude" placeholder="49.01379" value="<%= lat %>" required readonly/>
+                    <input type="number" name="latitude" id="latitude" placeholder="49.01379" required readonly/>
                     <label for="longitude">Longitude:</label>
-                    <input type="number" name="longitude" id="longitude" placeholder="8.390071" value="<%= long %>" required readonly/>
+                    <input type="number" name="longitude" id="longitude" placeholder="8.390071" required readonly/>
                     <label for="name">Name:</label>
                     <input type="text" name="name" id="name" placeholder="e.g. Central Berlin" maxlength="10" required/>
                     <label for="hashtag">Hashtag:</label>
@@ -57,9 +57,9 @@
                     <label for="searchterm">Search term or keywords:</label>
                     <input type="text" name="searchterm" id="searchterm" placeholder="e.g. Berlin" required/>
                     <label for="discovery_latitude" data-hidden>Latitude:</label>
-                    <input type="hidden" name="latitude" id="discovery_latitude" value="<%= lat %>"/>
+                    <input type="hidden" name="latitude" id="discovery_latitude"/>
                     <label for="discovery_longitude" data-hidden>Longitude:</label>
-                    <input type="hidden" name="longitude" id="discovery_longitude" value="<%= long %>"/>
+                    <input type="hidden" name="longitude" id="discovery_longitude"/>
                     <input type="submit" value="Search"/>
                 </fieldset>
 
@@ -69,14 +69,16 @@
             <div class="discovery__wrapper row">
                 <div class="discovery__taglist col-5">
                     <ul class="discovery__results" id="discoveryResults">
-                        <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
-                            <li><%= gtag.name %> (<%= gtag.latitude %>, <%= gtag.longitude %>) <%= gtag.hashtag %> </li>
-                        <% }); %>
                     </ul>
+                    <div class="discovery__pagination">
+                      <button id="discoveryPaginationPrev">Prev</button>
+                      <p id="discoveryPaginationText">1/1 (0)</p>
+                      <button id="discoveryPaginationNext">Next</button>
+                    </div>
                 </div>
 
                 <div class="discovery__map col-7">
-                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" data-tags='<%= JSON.stringify(taglist) %>'/>
+                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView"/>
                     <span>Result map</span>
                 </div>
             </div>

@@ -231,8 +231,46 @@ input[type=number] {
 }
 
 .discovery__map img {
+  height: 30rem;
   width: 100%;
   object-fit: cover;
+}
+
+.discovery__taglist {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.discovery__results {
+  flex: 1;
+}
+
+.discovery__pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.discovery__pagination button {
+  all: unset;
+  cursor: revert;
+
+  display: block;
+  padding: 0.5rem;
+
+  border: var(--border);
+  background-color: var(--background-color);
+}
+
+.discovery__pagination button:disabled {
+  color: var(--border-color);
+}
+
+.discovery__pagination button:focus {
+  outline: revert;
 }
 
 

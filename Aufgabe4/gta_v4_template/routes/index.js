@@ -43,6 +43,28 @@ function parseGeoTag(body) {
   }
   return new GeoTag(latitude, longitude, name, hashtag);
 }
+
+function paginate(tags, query) {
+  const {page, size} = query;
+  if (!page || !size) {
+    return tags;
+  }
+
+  const number_page = new Number(page);
+  const number_size = new Number(size);
+
+  return ({
+    data: tags.slice(number_page * number_size, number_page * number_size + number_size),
+    pagination: {
+      total_records: tags.length,
+      current_page: number_page,
+      total_pages: Math.max(Math.ceil(tags.length / number_size), 1),
+      next_page: number_page < Math.ceil(tags.length / number_size) - 1 ? number_page + 1 : null,
+      prev_page: number_page > 0 ? number_page - 1 : null
+    }
+  });
+}
+
 // App routes (A3)
 
 /**
@@ -55,11 +77,7 @@ function parseGeoTag(body) {
  */
 
 router.get('/', (req, res) => {
-  res.render('index', { 
-    lat: '',
-    long: '',
-    taglist: store.getGeoTags() 
-  })
+  res.render('index');
 });
 
 // API routes (A4)
@@ -78,29 +96,26 @@ router.get('/', (req, res) => {
 
 router.get('/api/geotags', (req, res) => {
   const {latitude, longitude, searchterm} = req.query;
-  
+  let tags = store.getGeoTags();
   if (latitude && longitude) {
     if (searchterm) {
-      res.json(store.searchNearbyGeoTags(
+      tags = store.searchNearbyGeoTags(
         searchterm, 
         latitude, 
         longitude, 
         SEARCH_RADIUS
-      ));
+      );
     } else {
-      res.json(store.getNearbyGeoTags(
+      tags = store.getNearbyGeoTags(
         latitude, 
         longitude, 
         SEARCH_RADIUS
-      ));
+      );
     }
-  } else {
-    if (searchterm) {
-      res.json(store.searchGeoTags(searchterm));
-    } else {
-      res.json(store.getGeoTags());
-    }
+  } else if (searchterm) {
+    tags = store.searchGeoTags(searchterm);
   }
+  res.json(paginate(tags, req.query));
 });
 
 

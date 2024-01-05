@@ -50,3 +50,8 @@ content-type: application/json
 ###
 GET http://localhost:3000/api/geotags/13 HTTP/1.1
 content-type: application/json
+
+
+###
+GET http://localhost:3000/api/geotags?page=0&size=5 HTTP/1.1
+content-type: application/json
