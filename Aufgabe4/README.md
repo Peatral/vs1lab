@@ -144,13 +144,13 @@ Zur Übersicht folgen noch mal alle Anforderungen in kompakter Form als Checklis
 
 ### Zusatzaufgabe: Pagination
 
-- [ ] **HTTP-Endpunkte** (Routen) im Server mit Paging-Unterstützung
-  - [ ] Abfrage von Seiten/Bereichen der Ergebnisliste
-  - [ ] Demonstration mit generischem HTTP Client
-- [ ] **Paging-Ergebnisliste** im Client
-  - [ ] Anfangs erscheinen alle GeoTags (in der Nähe) als Seitenmenge
-  - [ ] Paging Widget im Client unter Ergebnisliste
-    - [ ] Vor- und Zurückblättern von Seiten
-    - [ ] Kein Blättern vor/nach der ersten/letzten Seite
-  - [ ] Discovery und Tagging Formulare ändern Seitenmenge
-  - [ ] Client lädt immer nur eine Seite vom Server
+- [x] **HTTP-Endpunkte** (Routen) im Server mit Paging-Unterstützung
+  - [x] Abfrage von Seiten/Bereichen der Ergebnisliste
+  - [x] Demonstration mit generischem HTTP Client
+- [x] **Paging-Ergebnisliste** im Client
+  - [x] Anfangs erscheinen alle GeoTags (in der Nähe) als Seitenmenge
+  - [x] Paging Widget im Client unter Ergebnisliste
+    - [x] Vor- und Zurückblättern von Seiten
+    - [x] Kein Blättern vor/nach der ersten/letzten Seite
+  - [x] Discovery und Tagging Formulare ändern Seitenmenge
+  - [x] Client lädt immer nur eine Seite vom Server
