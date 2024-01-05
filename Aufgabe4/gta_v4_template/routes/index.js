@@ -110,7 +110,6 @@ router.get('/api/geotags', (req, res) => {
         SEARCH_RADIUS
       );
     } else {
-      console.log("this should be called")
       tags = store.getNearbyGeoTags(
         new Number(latitude), 
         new Number(longitude), 
