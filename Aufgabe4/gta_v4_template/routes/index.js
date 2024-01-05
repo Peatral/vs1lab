@@ -125,6 +125,7 @@ router.post('/api/geotags', (req, res) => {
 
   res
     .setHeader('Location', `/api/geotags/${id}`)
+    .status(201)
     .json(geotag);
 });
 
