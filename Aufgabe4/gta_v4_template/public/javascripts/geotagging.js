@@ -72,7 +72,8 @@ function updateDiscoveryWidget(tags) {
 document.addEventListener("DOMContentLoaded", () => {
     updateLocation();
 
-    document.getElementById("tag-form").onsubmit = (e) => {
+    // Non-lambda functions to have this (the form) available
+    document.getElementById("tag-form").onsubmit = function(e) {
       e.preventDefault();
 
       fetch("/api/geotags", {
@@ -81,23 +82,23 @@ document.addEventListener("DOMContentLoaded", () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          latitude: document.getElementById("latitude").value,
-          longitude: document.getElementById("longitude").value,
-          name: document.getElementById("name").value,
-          hashtag: document.getElementById("hashtag").value
+          latitude: this.latitude.value,
+          longitude: this.longitude.value,
+          name: this.name.value,
+          hashtag: this.hashtag.value
         })
       })
         .then(res => res.json())
         .then(tag => updateDiscoveryWidget([tag]));
     }
   
-    document.getElementById("discoveryFilterForm").onsubmit = (e) => {
+    document.getElementById("discoveryFilterForm").onsubmit = function(e) {
       e.preventDefault();
 
       fetch("/api/geotags?" + new URLSearchParams({
-        latitude: document.getElementById("discovery_latitude").value,
-        longitude: document.getElementById("discovery_longitude").value,
-        searchterm: document.getElementById("searchterm").value
+        latitude: this.discovery_latitude.value,
+        longitude: this.discovery_longitude.value,
+        searchterm: this.searchterm.value
       }))
         .then(res => res.json())
         .then(tags => updateDiscoveryWidget(tags));
