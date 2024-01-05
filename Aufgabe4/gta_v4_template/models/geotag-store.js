@@ -30,28 +30,28 @@ class InMemoryGeoTagStore{
     #lastID = 0
 
     addGeoTag(geotag) {
-        this.#geotags.push({key: ++this.#lastID, value: geotag});
+        this.#geotags.push({id: ++this.#lastID, tag: geotag});
         return this.#lastID;
     }
 
     getGeoTag(id) {
-        return this.#geotags.find(entry => entry.key == id)?.value;
+        return this.#geotags.find(entry => entry.id == id)?.tag;
     }
 
     setGeoTag(id, geotag) {
         this.removeGeoTag(id);
-        this.#geotags.push({key: id, value: geotag});
+        this.#geotags.push({id: id, tag: geotag});
         return geotag;
     }
 
     removeGeoTag(id) {
-        const geotag = this.#geotags.find(entry => entry.key == id)?.value;
-        this.#geotags = this.#geotags.filter(entry => entry.key != id);
+        const geotag = this.#geotags.find(entry => entry.id == id)?.tag;
+        this.#geotags = this.#geotags.filter(entry => entry.id != id);
         return geotag;
     }
 
     getNearbyGeoTags(latitude, longitude, radius) {
-        return this.#geotags.map(entry => entry.value).filter(tag => 
+        return this.#geotags.map(entry => entry.tag).filter(tag => 
             (tag.latitude - latitude) * (tag.latitude - latitude) + 
             (tag.longitude - longitude) * (tag.longitude - longitude) 
             <= radius * radius);
@@ -66,13 +66,13 @@ class InMemoryGeoTagStore{
 
     searchGeoTags(searchterm) {
       return this.#geotags
-          .map(entry => entry.value)
+          .map(entry => entry.tag)
           .filter(tag => tag.name.toLowerCase().includes(searchterm.toLowerCase()) 
               || tag.hashtag.toLowerCase().includes(searchterm.toLowerCase()));
     }
 
     getGeoTags() {
-      return this.#geotags.map(entry => entry.value);
+      return this.#geotags.map(entry => entry.tag);
     }
 
 }

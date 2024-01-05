@@ -31,7 +31,11 @@ const GeoTagExamples = require('../models/geotag-examples');
 const store = new GeoTagStore();
 GeoTagExamples.tagList
   .forEach(([name, latitude, longitude, hashtag]) => store.addGeoTag(new GeoTag(latitude, longitude, name, hashtag)));
-const SEARCH_RADIUS = 100;
+
+// 1 should be roughly 111 Kilometers
+// 0.32 includes partially Karlsruhe when in Landau i.d. Pfalz (roughly 35 kilometers)
+// radius should probably less than 0.01 (less than 1.1 kilometers)
+const SEARCH_RADIUS = 0.32;
 
 function parseGeoTag(body) {
   const { latitude, longitude, name, hashtag } = body;
@@ -101,14 +105,15 @@ router.get('/api/geotags', (req, res) => {
     if (searchterm) {
       tags = store.searchNearbyGeoTags(
         searchterm, 
-        latitude, 
-        longitude, 
+        new Number(latitude), 
+        new Number(longitude), 
         SEARCH_RADIUS
       );
     } else {
+      console.log("this should be called")
       tags = store.getNearbyGeoTags(
-        latitude, 
-        longitude, 
+        new Number(latitude), 
+        new Number(longitude), 
         SEARCH_RADIUS
       );
     }
